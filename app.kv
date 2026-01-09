@@ -1,0 +1,72 @@
+ScreenManager:
+    Login:
+    Home:
+    Gallery:
+    Viewer:
+
+<Login>:
+    name: "login"
+    BoxLayout:
+        orientation: "vertical"
+        padding: 40
+        spacing: 20
+        Label:
+            text: "PRIVATE MEDIA"
+            font_size: 26
+        TextInput:
+            id: pin
+            hint_text: "PIN"
+            password: True
+            input_filter: 'int'
+        Button:
+            text: "LOGIN"
+            on_press: root.login_pin()
+
+<Home>:
+    name: "home"
+    BoxLayout:
+        orientation: "vertical"
+        spacing: 15
+        padding: 20
+        Button:
+            text: "Upload Foto"
+            on_press: root.add_photo()
+        Button:
+            text: "Upload Video"
+            on_press: root.add_video()
+        Button:
+            text: "Buka Galeri"
+            on_press: root.open_gallery()
+        Button:
+            text: "Logout"
+            on_press: app.root.current = "login"
+
+<Gallery>:
+    name: "gallery"
+    BoxLayout:
+        orientation: "vertical"
+        Button:
+            text: "Kembali"
+            size_hint_y: None
+            height: 50
+            on_press: app.root.current = "home"
+        ScrollView:
+            GridLayout:
+                id: grid
+                cols: 2
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 10
+                padding: 10
+
+<Viewer>:
+    name: "viewer"
+    BoxLayout:
+        orientation: "vertical"
+        BoxLayout:
+            id: box
+        Button:
+            text: "Tutup"
+            size_hint_y: None
+            height: 50
+            on_press: app.root.current = "gallery"
